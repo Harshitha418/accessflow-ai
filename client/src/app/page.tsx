@@ -1,9 +1,14 @@
+import Navbar from "@/components/layout/Navbar";
+import HeroSection from "@/components/landing/HeroSection";
+
 export default function Home() {
   return (
-    <main className="min-h-screen bg-black text-white flex items-center justify-center">
-      <h1 className="text-5xl font-bold">
-        AccessFlow AI
-      </h1>
+    <main className="min-h-screen bg-black text-white">
+
+      <Navbar />
+
+      <HeroSection />
+
     </main>
   );
 }
