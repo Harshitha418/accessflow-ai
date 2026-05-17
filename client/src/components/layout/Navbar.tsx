@@ -8,9 +8,21 @@ export default function Navbar() {
           AccessFlow AI
         </h1>
 
+        <div className="flex items-center gap-4">
+
+        <button className="hidden text-sm text-gray-400 transition hover:text-white md:block">
+          Features
+        </button>
+
+        <button className="hidden text-sm text-gray-400 transition hover:text-white md:block">
+        About
+        </button>
+
         <button className="rounded-xl border border-white/20 px-4 py-2 text-sm transition hover:bg-white hover:text-black">
           Login
         </button>
+
+      </div>
 
       </div>
 

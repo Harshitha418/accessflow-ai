@@ -1,10 +1,19 @@
+"use client";
+import { motion } from "framer-motion";
 export default function HeroSection() {
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center">
 
       <div className="absolute inset-0 bg-gradient-to-b from-purple-500/20 via-black to-black" />
+      <div className="absolute left-10 top-40 h-72 w-72 rounded-full bg-purple-500/20 blur-3xl" />
 
-      <div className="relative z-10">
+<div className="absolute right-10 top-20 h-72 w-72 rounded-full bg-pink-500/20 blur-3xl" />
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="relative z-10"
+      >
 
         <p className="mb-4 text-sm uppercase tracking-[0.3em] text-gray-400">
           AI-Powered Accessibility Platform
@@ -32,7 +41,7 @@ export default function HeroSection() {
 
         </div>
 
-      </div>
+      </motion.div>
 
     </section>
   );
