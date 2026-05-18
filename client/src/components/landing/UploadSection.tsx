@@ -1,7 +1,19 @@
+"use client";
+import { useState } from "react";
 import { Upload } from "lucide-react";
 import SectionTitle from "@/components/ui/SectionTitle";
 
 export default function UploadSection() {
+  const [message, setMessage] = useState("");
+  const testBackend = async () => {
+
+  const response = await fetch("http://localhost:5000");
+
+  const data = await response.json();
+
+  setMessage(data.message);
+
+};
   return (
     <section className="px-6 py-24">
 
@@ -25,9 +37,18 @@ export default function UploadSection() {
           to receive AI-generated summaries and explanations.
         </p>
 
-        <button className="mt-8 rounded-2xl bg-white px-6 py-3 text-black transition hover:scale-105">
-          Upload Document
+        <button
+          onClick={testBackend}
+          className="mt-8 rounded-2xl bg-white px-6 py-3 text-black transition hover:scale-105"
+        >
+          Test Backend Connection
         </button>
+
+        {message && (
+          <p className="mt-6 text-green-400">
+            {message}
+          </p>
+        )}
 
       </div>
 

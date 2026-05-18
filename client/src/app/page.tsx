@@ -3,6 +3,7 @@ import HeroSection from "@/components/landing/HeroSection";
 import FeaturesSection from "@/components/landing/FeaturesSection";
 import StatsSection from "@/components/landing/StatsSection";
 import UploadSection from "@/components/landing/UploadSection";
+import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   return (
@@ -15,6 +16,10 @@ export default function Home() {
       <FeaturesSection />
 
       <StatsSection />
+
+      <UploadSection />
+
+      <Footer />
 
     </main>
   );
