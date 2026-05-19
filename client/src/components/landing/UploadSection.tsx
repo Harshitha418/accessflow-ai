@@ -5,15 +5,24 @@ import SectionTitle from "@/components/ui/SectionTitle";
 
 export default function UploadSection() {
   const [message, setMessage] = useState("");
-  const testBackend = async () => {
+  const [file, setFile] = useState<File | null>(null);
 
-  const response = await fetch("http://localhost:5000");
+  const uploadDocument = async () => {
+    if (!file) return;
+    const formData = new FormData();
+    formData.append("document", file);
+    const response = await fetch(
+      "http://localhost:5000/upload",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
 
   const data = await response.json();
-
-  setMessage(data.message);
-
+  setMessage(data.fileName);
 };
+
   return (
     <section className="px-6 py-24">
 
@@ -37,8 +46,18 @@ export default function UploadSection() {
           to receive AI-generated summaries and explanations.
         </p>
 
+        <input
+          type="file"
+          onChange={(e) => {
+            if (e.target.files) {
+              setFile(e.target.files[0]);
+            }
+        }}
+        className="mt-8"
+      />
+
         <button
-          onClick={testBackend}
+          onClick={uploadDocument}
           className="mt-8 rounded-2xl bg-white px-6 py-3 text-black transition hover:scale-105"
         >
           Test Backend Connection
@@ -46,7 +65,7 @@ export default function UploadSection() {
 
         {message && (
           <p className="mt-6 text-green-400">
-            {message}
+            Uploaded File: {message}
           </p>
         )}
 
