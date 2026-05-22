@@ -2,12 +2,15 @@
 import { useState } from "react";
 import { Upload } from "lucide-react";
 import SectionTitle from "@/components/ui/SectionTitle";
+import DocumentCard from "@/components/ui/DocumentCard";
 
 export default function UploadSection() {
   const [message, setMessage] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [processing, setProcessing] = useState(false);
+  const [documents, setDocuments] = useState<any[]>([]);
+
 
   const uploadDocument = async () => {
   if (!file) {
@@ -30,6 +33,14 @@ export default function UploadSection() {
   setProcessing(true);
   setTimeout(() => {
     setMessage(`AI processed: ${data.fileName}`);
+    setDocuments((prev) => [
+      ...prev,
+      {
+        name: data.fileName,
+        uploadedAt: data.uploadedAt,
+        size: data.size,
+      },
+    ]);
     setProcessing(false);
   }, 2000);
 };
