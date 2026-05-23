@@ -4,8 +4,11 @@ export default function Navbar() {
 
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
 
-        <h1 className="text-xl font-bold">
-          AccessFlow AI
+        <h1 className="text-3xl font-bold tracking-wide text-white">
+          AccessFlow
+          <span className="ml-2 text-purple-400">
+            AI
+          </span>
         </h1>
 
         <div className="flex items-center gap-4">

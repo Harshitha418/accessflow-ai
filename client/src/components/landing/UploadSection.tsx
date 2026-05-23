@@ -46,14 +46,14 @@ export default function UploadSection() {
 };
 
   return (
-    <section className="px-6 py-32">
+    <section className="px-6 min-h-screen py-40">
 
       <SectionTitle
         title="Upload Any Public Document"
         subtitle="AI DOCUMENT ANALYSIS"
       />
 
-      <div className="mx-auto flex max-w-4xl flex-col items-center rounded-3xl border border-dashed border-white/20 bg-white/5 p-16 text-center backdrop-blur-md">
+      <div className="mx-auto flex max-w-5xl flex-col items-center rounded-3xl border border-dashed border-white/20 bg-white/5 p-16 text-center backdrop-blur-md">
 
         <div className="rounded-full bg-purple-500/20 p-6">
           <Upload size={40} />
@@ -107,14 +107,19 @@ export default function UploadSection() {
         </button>
 
         {processing && (
-          <div className="mt-6 rounded-2xl border border-purple-500/20 bg-purple-500/10 p-4 text-purple-300">
-            AI is analyzing your document...
+          <div className="mt-6 w-full max-w-2xl animate-pulse rounded-3xl border border-purple-500/20 bg-purple-500/10 p-6">
+            <div className="h-4 w-40 rounded bg-purple-300/20" />
+            <div className="mt-6 h-4 w-full rounded bg-purple-300/20" />
+            <div className="mt-4 h-4 w-3/4 rounded bg-purple-300/20" />
+            <p className="mt-6 text-purple-300">
+              AI is analyzing your document...
+            </p>
           </div>
         )}
 
 
         {message && (
-          <div className="mt-6 w-full max-w-2xl rounded-3xl border border-green-500/20 bg-green-500/10 p-6 text-left">
+          <div className="mt-10 w-full max-w-3xl rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-md">
             <p className="text-sm uppercase tracking-[0.3em] text-green-300">
               AI RESULT
             </p>
@@ -135,6 +140,28 @@ export default function UploadSection() {
             </div>
           </div>
         )}
+        <div className="mt-16 w-full max-w-5xl">
+          <h2 className="mb-8 text-3xl font-bold">
+            Upload History
+          </h2>
+          {documents.length === 0 ? (
+            <div className="rounded-3xl border border-dashed border-white/10 p-10 text-center text-gray-500">
+              No documents uploaded yet.
+            </div>
+          ) : (
+            <div className="grid gap-6">
+              {documents.map((doc, index) => (
+                <DocumentCard
+                  key={index}
+                  name={doc.name}
+                  uploadedAt={doc.uploadedAt}
+                  size={doc.size}
+                />
+            ))}
+          </div>
+        )}
+      </div>
+
 
       </div>
 

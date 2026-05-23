@@ -1,9 +1,7 @@
 import Navbar from "@/components/layout/Navbar";
-import HeroSection from "@/components/landing/HeroSection";
 import FeaturesSection from "@/components/landing/FeaturesSection";
-import StatsSection from "@/components/landing/StatsSection";
-import UploadSection from "@/components/landing/UploadSection";
 import Footer from "@/components/layout/Footer";
+import HeroSection from "@/components/landing/HeroSection";
 
 export default function Home() {
   return (
@@ -14,10 +12,6 @@ export default function Home() {
       <HeroSection />
 
       <FeaturesSection />
-
-      <StatsSection />
-
-      <UploadSection />
 
       <Footer />
 

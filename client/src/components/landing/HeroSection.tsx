@@ -1,10 +1,12 @@
+
 "use client";
+import Link from "next/link";
 import { motion } from "framer-motion";
 export default function HeroSection() {
   return (
     <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-6 text-center">
 
-      <div className="absolute inset-0 bg-gradient-to-b from-purple-500/20 via-black to-black" />
+      <div className="absolute inset-0 bg-linear-to-b from-purple-500/20 via-black to-black" />
       <div className="absolute left-10 top-40 h-72 w-72 rounded-full bg-purple-500/20 blur-3xl" />
 
 <div className="absolute right-10 top-20 h-72 w-72 rounded-full bg-pink-500/20 blur-3xl" />
@@ -31,9 +33,11 @@ export default function HeroSection() {
 
         <div className="mt-10 flex justify-center gap-4">
 
-          <button className="rounded-2xl bg-white px-6 py-3 text-black transition hover:scale-105">
-            Get Started
-          </button>
+          <Link href="/upload">
+            <button className="rounded-2xl bg-white px-8 py-4 text-lg font-medium text-black transition hover:scale-105">
+              Get Started
+            </button>
+          </Link>
 
           <button className="rounded-2xl border border-white/20 px-6 py-3 transition hover:bg-white hover:text-black">
             Learn More
