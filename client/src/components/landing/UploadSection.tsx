@@ -3,14 +3,16 @@ import { useState } from "react";
 import { Upload } from "lucide-react";
 import SectionTitle from "@/components/ui/SectionTitle";
 import DocumentCard from "@/components/ui/DocumentCard";
+import {useRouter} from "next/navigation";
 
 export default function UploadSection() {
+  const router = useRouter();
   const [message, setMessage] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [documents, setDocuments] = useState<any[]>([]);
-
+  const [extractedText, setExtractedText] = useState(""); 
 
   const uploadDocument = async () => {
   if (!file) {
@@ -29,8 +31,11 @@ export default function UploadSection() {
   );
 
   const data = await response.json();
+  setExtractedText(data.extractedText);
   setLoading(false);
   setProcessing(true);
+  
+
   setTimeout(() => {
     setMessage(`AI processed: ${data.fileName}`);
     setDocuments((prev) => [
@@ -42,6 +47,7 @@ export default function UploadSection() {
       },
     ]);
     setProcessing(false);
+    router.push("/results");
   }, 2000);
 };
 
