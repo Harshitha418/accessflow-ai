@@ -1,6 +1,12 @@
+"use client";
 import Navbar from "@/components/layout/Navbar";
+import { useDocumentStore } from "@/store/documentStore";
 
 export default function ResultsPage() {
+  const {
+  extractedText,
+  fileName,
+} = useDocumentStore();
   return (
     <main className="min-h-screen bg-black text-white">
 
@@ -16,16 +22,21 @@ export default function ResultsPage() {
           Document Analysis
         </h1>
 
+        <p className="mt4 text-gray-400">
+          {fileName}
+        </p>
+
         <div className="mt-12 rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-md">
 
           <h2 className="text-2xl font-semibold">
             AI Generated Summary
           </h2>
 
-          <p className="mt-6 leading-8 text-gray-300">
-            Uploaded document summaries and accessibility-friendly
-            explanations will appear here.
+        <div className="mt-6 rounded-2xl bg-black/30 p-6">
+          <p className="max-h-100 overflow-y-auto leading-8 text-gray-300">
+            {extractedText || "No extracted text available."}
           </p>
+        </div>
 
         </div>
 

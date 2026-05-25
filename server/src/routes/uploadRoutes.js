@@ -17,6 +17,7 @@ router.post("/", upload.single("document"), async (req, res) => {
     const pdfData = await pdf(req.file.buffer);
 
     const extractedText = pdfData.text;
+    console.log(extractedText);
 
     res.json({
       success: true,
