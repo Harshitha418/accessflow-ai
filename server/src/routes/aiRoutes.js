@@ -11,7 +11,7 @@ router.post("/summarize", async (req, res) => {
     const { text } = req.body;
 
     const response = await axios.post(
-      
+
       "https://openrouter.ai/api/v1/chat/completions",
 
       {
@@ -29,7 +29,7 @@ router.post("/summarize", async (req, res) => {
           {
             role: "user",
 
-            content: `Summarize this document:\n\n${text}`,
+            content: `Summarize this document in simple language:\n\n${text}`,
           },
         ],
       },
@@ -43,7 +43,9 @@ router.post("/summarize", async (req, res) => {
         },
       }
     );
-    console.log( response.data);
+
+    console.log(response.data);
+
     res.json({
 
       success: true,
