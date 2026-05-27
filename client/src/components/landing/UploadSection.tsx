@@ -4,15 +4,23 @@ import { Upload } from "lucide-react";
 import SectionTitle from "@/components/ui/SectionTitle";
 import DocumentCard from "@/components/ui/DocumentCard";
 import {useRouter} from "next/navigation";
+import {useDocumentStore} from "@/store/documentStore";
 
 export default function UploadSection() {
+  
   const router = useRouter();
+
+  const {
+    setExtractedText,
+    setFileName,
+    setSummary,
+  } = useDocumentStore();
+
   const [message, setMessage] = useState("");
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [processing, setProcessing] = useState(false);
-  const [documents, setDocuments] = useState<any[]>([]);
-  const [extractedText, setExtractedText] = useState(""); 
+  const [documents, setDocuments] = useState<any[]>([]); 
 
   const uploadDocument = async () => {
   if (!file) {
@@ -32,6 +40,26 @@ export default function UploadSection() {
 
   const data = await response.json();
   setExtractedText(data.extractedText);
+  const aiResponse = await fetch(
+  "http://localhost:5000/api/ai/summarize",
+  {
+    method: "POST",
+
+    headers: {
+      "Content-Type": "application/json",
+    },
+
+    body: JSON.stringify({
+      text: data.extractedText,
+    }),
+  }
+);
+
+const aiData = await aiResponse.json();
+console.log(aiData);
+setSummary(aiData.summary);
+
+  setFileName(data.fileName);
   setLoading(false);
   setProcessing(true);
   

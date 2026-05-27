@@ -6,6 +6,7 @@ export default function ResultsPage() {
   const {
   extractedText,
   fileName,
+  summary,
 } = useDocumentStore();
   return (
     <main className="min-h-screen bg-black text-white">
@@ -32,6 +33,12 @@ export default function ResultsPage() {
             AI Generated Summary
           </h2>
 
+        <div className="mt-6 rounded-2xl bg-purple-500/10 p-6">
+          <p className="leading-8 text-gray-300">
+            {summary || "Generating AI summary..."}
+          </p>
+        </div>
+        
         <div className="mt-6 rounded-2xl bg-black/30 p-6">
           <p className="max-h-100 overflow-y-auto leading-8 text-gray-300">
             {extractedText || "No extracted text available."}
