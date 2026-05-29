@@ -17,6 +17,7 @@ export default function UploadSection() {
     setExtractedText,
     setFileName,
     setSummary,
+    addHistory,
   } = useDocumentStore();
 
   const [message, setMessage] = useState("");
@@ -74,7 +75,17 @@ export default function UploadSection() {
 
       console.log(aiData);
 
-      setSummary(aiData.summary);
+      if (aiData.success) {
+        setSummary(aiData.summary);
+      } else {
+        setSummary("AI summary generation failed.");
+      }
+
+      addHistory({
+        fileName:data.fileName,
+        summary:aiData.summary,
+        uploadedAt: new Date().toISOString(),
+      });
 
       setLoading(false);
 

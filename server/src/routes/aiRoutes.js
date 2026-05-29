@@ -9,13 +9,24 @@ router.post("/summarize", async (req, res) => {
   try {
 
     const { text } = req.body;
+    const MAX_CHARS=4000;
+    const truncatedText=
+      text.length>MAX_CHARS
+        ? text.slice(0,MAX_CHARS)
+        : text;
+    console.log(
+      `Original Length: ${text.length}`
+    );
+    console.log(
+      `Sent Length: ${truncatedText.length}`
+    );
 
     const response = await axios.post(
 
       "https://openrouter.ai/api/v1/chat/completions",
 
       {
-        model: "mistralai/mistral-7b-instruct",
+        model: "microsoft/phi-3-mini-128k-instruct:free",
 
         messages: [
 
@@ -23,13 +34,20 @@ router.post("/summarize", async (req, res) => {
             role: "system",
 
             content:
-              "You simplify public-service and official documents into easy-to-understand explanations.",
+              "You are an accessibility assistant. Explain documents in simple language. Give a short summary, key points, and important actions the user should take.",
           },
 
           {
             role: "user",
 
-            content: `Summarize this document in simple language:\n\n${text}`,
+            content: `Summarize this document in simple language:
+            
+            ${truncatedText}
+            
+            Format:
+            1.summary
+            2.key points
+            3.actions required`,
           },
         ],
       },

@@ -7,6 +7,10 @@ type DocumentStore = {
   fileName: string;
   
   summary:string;
+
+  history: any[];
+
+  addHistory: (item: any) => void;
   
   setExtractedText: (text: string) => void;
 
@@ -29,5 +33,10 @@ export const useDocumentStore = create<DocumentStore>((set) => ({
 
   setFileName: (name) =>
     set({ fileName: name }),
+  history: [],
+  addHistory: (item) =>
+    set((state) => ({ 
+      history: [...state.history, item]
+    })),  
 
 }));

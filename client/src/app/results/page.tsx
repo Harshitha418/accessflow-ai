@@ -1,20 +1,20 @@
 "use client";
+
 import Navbar from "@/components/layout/Navbar";
 import { useDocumentStore } from "@/store/documentStore";
 
 export default function ResultsPage() {
   const {
-  extractedText,
-  fileName,
-  summary,
-} = useDocumentStore();
+    extractedText,
+    fileName,
+    summary,
+  } = useDocumentStore();
+
   return (
     <main className="min-h-screen bg-black text-white">
-
       <Navbar />
 
       <div className="mx-auto max-w-5xl px-6 py-32">
-
         <p className="text-sm uppercase tracking-[0.3em] text-purple-300">
           AI RESULTS
         </p>
@@ -23,32 +23,26 @@ export default function ResultsPage() {
           Document Analysis
         </h1>
 
-        <p className="mt4 text-gray-400">
+        <p className="mt-4 text-gray-400">
           {fileName}
         </p>
 
-        <div className="mt-12 rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur-md">
-
-          <h2 className="text-2xl font-semibold">
+        <div className="mt-6 rounded-2xl border border-purple-500/20 bg-purple-500/5 p-6">
+          <h3 className="mb-4 text-xl font-semibold">
             AI Generated Summary
-          </h2>
+          </h3>
 
-        <div className="mt-6 rounded-2xl bg-purple-500/10 p-6">
-          <p className="leading-8 text-gray-300">
-            {summary || "Generating AI summary..."}
-          </p>
+          <div className="whitespace-pre-wrap leading-8 text-gray-300">
+            {summary || "Generating summary..."}
+          </div>
         </div>
-        
+
         <div className="mt-6 rounded-2xl bg-black/30 p-6">
           <p className="max-h-100 overflow-y-auto leading-8 text-gray-300">
             {extractedText || "No extracted text available."}
           </p>
         </div>
-
-        </div>
-
       </div>
-
     </main>
   );
 }
